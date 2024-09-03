@@ -1,0 +1,170 @@
+<div class="container-fluid">
+
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Loan Application Form</h1>
+    </div>
+
+    <app-alert *ngIf="alertText" [alertText]="alertText" [alertType]="alertType"></app-alert>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card shadow mb-4">
+                <form class="p-3 overflow-auto">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="form-group w-100">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" class="form-control" [(ngModel)]="application.fullName" name="fullName"
+                                id="fullName">
+                            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                                                else.</small> -->
+                        </div>
+                        <div class="form-group w-100">
+                            <label for="birthDate">Birth Date</label>
+                            <input type="date" class="form-control" [(ngModel)]="application.dateOfBirth"
+                                name="birthDate" id="birthDate">
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="form-group w-100">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" [(ngModel)]="application.email" id="email"
+                                name="email">
+                        </div>
+                        <div class="form-group w-100">
+                            <label for="phoneNumber">Phone Number</label>
+                            <input type="text" class="form-control" [(ngModel)]="application.phone" id="phoneNumber"
+                                name="phoneNumber">
+                        </div>
+                    </div>
+
+                    <div class="form-group w-100">
+                        <label for="address">Address</label>
+                        <textarea type="text" class="form-control" [(ngModel)]="application.address" name="address"
+                            id="address"></textarea>
+                    </div>
+
+                    <div class="form-group w-100">
+                        <label for="panCard">Permanent Account Number</label>
+                        <input type="text" class="form-control" [(ngModel)]="application.panCard" id="panCard"
+                            name="panCard">
+                    </div>
+
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="form-group w-100">
+                            <label for="city">City</label>
+                            <input type="text" class="form-control" [(ngModel)]="application.city" id="city"
+                                name="city">
+                        </div>
+                        <div class="form-group w-100">
+                            <label for="state">State</label>
+                            <input type="text" class="form-control" [(ngModel)]="application.state" id="state"
+                                name="state">
+                        </div>
+                        <div class="form-group w-100">
+                            <label for="zipCode">Zip Code</label>
+                            <input type="text" class="form-control" [(ngModel)]="application.zipCode" id="zipCode"
+                                name="zipCode">
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="form-group w-100">
+                            <label for="annualIncome">Annual Income</label>
+                            <input type="number" class="form-control" [(ngModel)]="application.annualIncome"
+                                name="annualIncome" id="annualIncome">
+                        </div>
+                        <div class="form-group w-100">
+                            <label for="employmentStatus">Employment Status</label>
+                            <select name="employmentStatus" id="employmentStatus" class="w-100"
+                                [(ngModel)]="application.employmentStatus">
+                                <option value="employed">Employed</option>
+                                <option value="unemployed">Unemployed</option>
+                            </select>
+                        </div>
+                        <div class="form-group w-100">
+                            <label for="creditScore">Credit Score</label>
+                            <input type="text" class="form-control" [(ngModel)]="application.creditScore"
+                                name="creditScore" id="creditScore">
+                        </div>
+                    </div>
+
+                    <div class="form-group w-100">
+                        <label for="assets">Assets</label>
+                        <textarea type="text" class="form-control" id="assets" name="assets"
+                            [(ngModel)]="application.assets"
+                            placeholder="Describe your assets (e.g, property, vehicle, etc.)"></textarea>
+                    </div>
+
+                    <div class="form-group w-100 d-flex justify-content-end">
+                        <button class="btn btn-primary" (click)="onSubmit()">Submit Application</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card shadow mb-4">
+                <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button"
+                    aria-expanded="true" aria-controls="collapseCardExample">
+                    <h6 class="m-0 font-weight-bold text-primary">Current Loans</h6>
+                </a>
+                <div class="collapse show" id="collapseCardExample">
+                    <div class="card-body">
+                        <form>
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="form-group w-100">
+                                    <label for="bankName">Bank Name</label>
+                                    <input type="text" class="form-control" [(ngModel)]="loan.bankName" id="bankName"
+                                        name="bankName">
+                                </div>
+                                <div class="form-group w-100">
+                                    <label for="loanAmount">Loan Amount</label>
+                                    <input type="text" class="form-control" [(ngModel)]="loan.loanAmount"
+                                        name="loanAmount" id="loanAmount">
+                                </div>
+                                <div class="form-group w-100">
+                                    <label for="emi">EMI</label>
+                                    <input type="text" class="form-control" [(ngModel)]="loan.emi" id="emi" name="emi">
+                                </div>
+                            </div>
+                            <div class="form-group w-100 d-flex justify-content-end">
+                                <button class="btn btn-primary" (click)="addLoan()">Add Loan</button>
+                            </div>
+                        </form>
+
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Bank</th>
+                                    <th scope="col">Loan Amount</th>
+                                    <th scope="col">EMI</th>
+                                </tr>
+                            </thead>
+
+                            @if (application.Loans.length === 0) {
+                            <tbody>
+                                <tr>
+                                    <td class="text-center" colspan="4">No Loans added yet!</td>
+                                </tr>
+                            </tbody>
+                            } @else {
+                            <tbody>
+                                @for (item of application.Loans; track $index) {
+                                <tr>
+                                    <th scope="row">{{$index + 1}}</th>
+                                    <td>{{item.bankName}}</td>
+                                    <td>{{item.loanAmount}}</td>
+                                    <td>{{item.emi}}</td>
+                                </tr>
+                                }
+                            </tbody>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
