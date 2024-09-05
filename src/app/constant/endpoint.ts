@@ -1,7 +1,7 @@
 export const enpoint = {
   API_METHOD: {
-    ADD_APPLICATION: 'Loan/AddNewApplication',
-    GET_APPLICATIONS: 'Loan/GetAllApplications',
+    ADDGET_USER: 'users',
+    LOGIN: 'auth/login',
   },
   VALIDATION_MESSAGE: {
     REQUIRED: 'this is required',

@@ -1,25 +1,30 @@
 import { Routes } from '@angular/router';
 import { LayoutComponent } from './components/layout/layout.component';
-import { ApplicationListComponent } from './pages/application-list/application-list.component';
-import { LoanApplicationComponent } from './pages/loan-application/loan-application.component';
+import { CreateUserComponent } from './pages/create-user/create-user.component';
+import { LoginComponent } from './pages/login/login.component';
+import { UserListComponent } from './pages/user-list/user-list.component';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'newApplication',
+    redirectTo: 'login',
     pathMatch: 'full',
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
   },
   {
     path: '',
     component: LayoutComponent,
     children: [
       {
-        path: 'newApplication',
-        component: LoanApplicationComponent,
+        path: 'user-list',
+        component: UserListComponent,
       },
       {
-        path: 'applicationList',
-        component: ApplicationListComponent,
+        path: 'create-user',
+        component: CreateUserComponent,
       },
     ],
   },

@@ -1,0 +1,23 @@
+<section class="bg-dark">
+    <app-alert *ngIf="alertText" [alertText]="alertText" [alertType]="alertType"></app-alert>
+
+    <div class="container vh-100 d-flex justify-content-center align-items-center">
+        <div class="col-md-6 col-sm-8">
+            <div class="card p-4">
+                <h2 class="text-center mb-4">Login</h2>
+                <form>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" [(ngModel)]="loginObj.email" name="email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" [(ngModel)]="loginObj.password"
+                            name="password">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100" (click)="login()">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

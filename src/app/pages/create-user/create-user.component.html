@@ -1,0 +1,59 @@
+<div class="container-fluid">
+
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Create User</h1>
+        <a [routerLink]="'/user-list'" class="btn btn-primary">Go back</a>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card shadow mb-4">
+                <form class="p-3 overflow-auto">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="form-group w-100">
+                            <label for="email">Email</label>
+                            <input type="text" class="form-control" [(ngModel)]="user.email" name="email" id="email">
+                            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                                                else.</small> -->
+                        </div>
+                        <div class="form-group w-100">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" [(ngModel)]="user.name" name="name" id="name">
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="form-group w-100">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" [(ngModel)]="user.password" name="password"
+                                id="password">
+                            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                                                                    else.</small> -->
+                        </div>
+                        <div class="form-group w-100">
+                            <label for="role">Role</label>
+                            <input type="text" class="form-control" [(ngModel)]="user.role" name="role" id="role">
+                        </div>
+                    </div>
+
+                    <div class="form-group w-50">
+                        <label for="avatar">Avatar</label>
+                        <input type="text" class="form-control" [(ngModel)]="user.avatar" name="avatar" id="avatar" />
+                    </div>
+
+                    <div *ngIf="errors.length > 0" [className]="'form-group w-50 border border-danger py-2 rounded'">
+                        <ul class="my-0 py-0">
+                            @for (error of errors; track $index) {
+                            <li class="text-danger">{{error}}</li>
+                            }
+                        </ul>
+                    </div>
+
+                    <div class="form-group w-100 d-flex justify-content-end">
+                        <button class="btn btn-primary" (click)="createUser()">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
