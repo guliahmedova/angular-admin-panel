@@ -46,6 +46,15 @@ export class UserService {
     );
   }
 
+  checkEmail(email: string) {
+    return this.http.post(
+      environment.API_URL + enpoint.API_METHOD.CHECK_EMAIL,
+      {
+        email: email,
+      }
+    );
+  }
+
   getUserBySession(): Observable<IUser> {
     const access_token = localStorage.getItem('access-token');
 

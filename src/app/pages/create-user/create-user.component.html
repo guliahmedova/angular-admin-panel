@@ -8,17 +8,46 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="card shadow mb-4">
-                <form class="p-3 overflow-auto">
+                <form class="p-3 overflow-auto" #form="ngForm">
                     <div class="d-flex align-items-center gap-3">
                         <div class="form-group w-100">
                             <label for="email">Email</label>
-                            <input type="text" class="form-control" [(ngModel)]="user.email" name="email" id="email">
-                            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                                                else.</small> -->
+                            <input type="email" class="form-control" [(ngModel)]="user.email" name="email" id="email"
+                                required minlength="11" #email="ngModel"
+                                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                                [class.is-invalid]="email.invalid && email.touched">
+
+                            <div *ngIf="email.errors && (email.dirty && email.touched)" class="alert alert-danger">
+                                <small class="text-danger d-block" [hidden]="!email.errors['pattern']">
+                                    The email must be an email
+                                    format
+                                </small>
+
+                                <small class="text-danger d-block" [hidden]="!email.errors['required']">
+                                    The email should not be empty
+                                </small>
+
+                                <small class="text-danger d-block" [hidden]="!email.errors['minlength']">
+                                    The email should be at least 11
+                                    characters long
+                                </small>
+                            </div>
                         </div>
                         <div class="form-group w-100">
                             <label for="name">Name</label>
-                            <input type="text" class="form-control" [(ngModel)]="user.name" name="name" id="name">
+                            <input type="text" class="form-control" [(ngModel)]="user.name" name="name" id="name"
+                                required minlength="1" maxlength="20" #name="ngModel"
+                                [class.is-invalid]="name.invalid && name.touched">
+                            <div *ngIf="name.errors && (name.dirty && name.touched)" class="alert alert-danger">
+                                <small class="text-danger d-block" [hidden]="!name.errors['required']">
+                                    The name should not be empty
+                                </small>
+
+                                <small class="text-danger d-block" [hidden]="!name.errors['minlength']">
+                                    The name should be at least 1
+                                    characters long
+                                </small>
+                            </div>
                         </div>
                     </div>
 
@@ -26,19 +55,54 @@
                         <div class="form-group w-100">
                             <label for="password">Password</label>
                             <input type="password" class="form-control" [(ngModel)]="user.password" name="password"
-                                id="password">
-                            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                                                                    else.</small> -->
+                                id="password" required minlength="4" #password="ngModel"
+                                [class.is-invalid]="password.invalid && password.touched" pattern="[a-zA-Z0-9]+$">
+                            <div *ngIf="password.errors && (password.dirty && password.touched)"
+                                class="alert alert-danger">
+                                <small class="text-danger d-block" [hidden]="!password.errors['required']">
+                                    The password should not be empty
+                                </small>
+
+                                <small class="text-danger d-block" [hidden]="!password.errors['minlength']">
+                                    The password must be longer than or equal to 4 characters
+                                </small>
+
+                                <small class="text-danger d-block" [hidden]="!password.errors['pattern']">
+                                    The password must contain only letters and numbers
+                                </small>
+                            </div>
                         </div>
                         <div class="form-group w-100">
                             <label for="role">Role</label>
-                            <input type="text" class="form-control" [(ngModel)]="user.role" name="role" id="role">
+                            <input type="text" class="form-control" [(ngModel)]="user.role" name="role" id="role"
+                                #role="ngModel" [class.is-invalid]="role.invalid && role.touched" required
+                                pattern="^(admin|customer)$">
+                            <div *ngIf="role.errors && (role.dirty && role.touched)" class="alert alert-danger">
+                                <small class="text-danger d-block" [hidden]="!role.errors['required']">
+                                    The role should not be empty
+                                </small>
+
+                                <small class="text-danger d-block" [hidden]="!role.errors['pattern']">
+                                    The role must be one of thefollowing values: admin, customer
+                                </small>
+                            </div>
                         </div>
                     </div>
 
                     <div class="form-group w-50">
                         <label for="avatar">Avatar</label>
-                        <input type="text" class="form-control" [(ngModel)]="user.avatar" name="avatar" id="avatar" />
+                        <input type="text" class="form-control" [(ngModel)]="user.avatar" name="avatar" id="avatar"
+                            required #avatar="ngModel" [class.is-invalid]="avatar.invalid && avatar.touched"
+                            pattern="^(https?:\/\/[^\s$.?#].[^\s]*)$" />
+                        <div *ngIf="avatar.errors && (avatar.dirty && avatar.touched)" class="alert alert-danger">
+                            <small class="text-danger d-block" [hidden]="!avatar.errors['required']">
+                                The avatar should not be empty
+                            </small>
+
+                            <small class="text-danger d-block" [hidden]="!avatar.errors['pattern']">
+                                The avatar must be a URL address
+                            </small>
+                        </div>
                     </div>
 
                     <div *ngIf="errors.length > 0" [className]="'form-group w-50 border border-danger py-2 rounded'">

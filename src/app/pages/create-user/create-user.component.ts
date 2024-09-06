@@ -18,6 +18,7 @@ export class CreateUserComponent {
 
   user: User = new User();
   errors: string[] = [];
+  isEmailAvailable: boolean = false;
 
   createUser() {
     this.userService.addUser(this.user).subscribe(
@@ -27,7 +28,6 @@ export class CreateUserComponent {
       },
       (error) => {
         this.errors = error?.error?.message;
-        console.log(error?.error?.message, 'ERRRRROR');
       }
     );
   }
@@ -40,9 +40,19 @@ export class CreateUserComponent {
         },
         (error) => {
           this.errors = error?.error?.message;
-          console.log(error?.error?.message, 'ERRRRROR');
         }
       );
     }
+  }
+
+  checkEmail() {
+    this.userService.checkEmail(this.user.email).subscribe(
+      (res) => {
+        console.log(res);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }

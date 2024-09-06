@@ -49,7 +49,6 @@ export class UserListComponent implements OnInit {
   getUserBySessionOnLoad() {
     this.userService.getUserBySession().subscribe(
       (res: IUser) => {
-        console.log('res: ', res);
         if (res.role.toLowerCase() === 'admin') {
           this.isAdmin = true;
         } else {
