@@ -33,14 +33,16 @@ export class CreateUserComponent {
   }
 
   updateUser() {
-    this.userService.updateUser(this.user).subscribe(
-      (res: User) => {
-        this.router.navigateByUrl('/user-list');
-      },
-      (error) => {
-        this.errors = error?.error?.message;
-        console.log(error?.error?.message, 'ERRRRROR');
-      }
-    );
+    if (this.user.id) {
+      this.userService.updateUser(this.user).subscribe(
+        (res: User) => {
+          this.router.navigateByUrl('/user-list');
+        },
+        (error) => {
+          this.errors = error?.error?.message;
+          console.log(error?.error?.message, 'ERRRRROR');
+        }
+      );
+    }
   }
 }

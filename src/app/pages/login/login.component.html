@@ -2,8 +2,8 @@
     <app-alert *ngIf="alertText" [alertText]="alertText" [alertType]="alertType"></app-alert>
 
     <div class="container vh-100 d-flex justify-content-center align-items-center">
-        <div class="col-md-6 col-sm-8">
-            <div class="card p-4">
+        <div class="col-lg-6 col-md-8 col-sm-8 w-100">
+            <div class="card pl-4 pr-4 pt-4 pt-2">
                 <h2 class="text-center mb-4">Login</h2>
                 <form>
                     <div class="mb-3">
@@ -17,6 +17,14 @@
                     </div>
                     <button type="submit" class="btn btn-primary w-100" (click)="login()">Login</button>
                 </form>
+
+                <div class="mt-2">
+                    <p><strong>Custom Email:</strong> maria&#64;mail.com</p>
+                    <p><strong>Custom Password:</strong> 12345</p>
+                    <hr>
+                    <p><strong>Admin Email:</strong> admin&#64;mail.com</p>
+                    <p><strong>Admin Password:</strong> admin123</p>
+                </div>
             </div>
         </div>
     </div>

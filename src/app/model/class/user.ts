@@ -4,7 +4,7 @@ export class User {
   password: string;
   role: string;
   avatar: string;
-  id: number;
+  id?: number;
 
   constructor() {
     this.id = 0;

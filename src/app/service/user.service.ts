@@ -33,9 +33,9 @@ export class UserService {
     );
   }
 
-  updateUser(user: IUser): Observable<User> {
+  updateUser(user: User): Observable<User> {
     return this.http.put<User>(
-      environment.API_URL + enpoint.API_METHOD.ADDGET_USER + '/' + user.id,
+      environment.API_URL + enpoint.API_METHOD.ADDGET_USER + '/' + user?.id,
       user
     );
   }
