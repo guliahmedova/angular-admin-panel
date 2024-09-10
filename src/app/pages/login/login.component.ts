@@ -19,7 +19,7 @@ export class LoginComponent {
     password: '',
   };
 
-  userSerive = inject(UserService);
+  userSerice = inject(UserService);
 
   alertType: string = '';
   alertText: string = '';
@@ -27,9 +27,12 @@ export class LoginComponent {
   router = inject(Router);
 
   login() {
-    this.userSerive.login(this.loginObj).subscribe(
+    this.userSerice.login(this.loginObj).subscribe(
       (res: ILoginResponse) => {
         localStorage.setItem('access-token', res.access_token);
+        this.userSerice.getUserBySession().subscribe((res) => {
+          localStorage.setItem('role', res.role);
+        });
         this.router.navigateByUrl('user-list');
       },
       (error) => {

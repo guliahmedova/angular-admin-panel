@@ -26,6 +26,12 @@ export class UserService {
     );
   }
 
+  getUser(userId: string): Observable<User> {
+    return this.http.get<User>(
+      environment.API_URL + enpoint.API_METHOD.ADDGET_USER + '/' + userId
+    );
+  }
+
   addUser(user: User): Observable<User> {
     return this.http.post<User>(
       environment.API_URL + enpoint.API_METHOD.ADDGET_USER,
@@ -33,9 +39,9 @@ export class UserService {
     );
   }
 
-  updateUser(user: User): Observable<User> {
+  updateUser(user: User, userId: string): Observable<User> {
     return this.http.put<User>(
-      environment.API_URL + enpoint.API_METHOD.ADDGET_USER + '/' + user?.id,
+      environment.API_URL + enpoint.API_METHOD.ADDGET_USER + '/' + userId,
       user
     );
   }
@@ -43,15 +49,6 @@ export class UserService {
   deleteUser(userId: number) {
     return this.http.delete(
       environment.API_URL + enpoint.API_METHOD.ADDGET_USER + '/' + userId
-    );
-  }
-
-  checkEmail(email: string) {
-    return this.http.post(
-      environment.API_URL + enpoint.API_METHOD.CHECK_EMAIL,
-      {
-        email: email,
-      }
     );
   }
 

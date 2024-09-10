@@ -31,28 +31,4 @@ export class CreateUserComponent {
       }
     );
   }
-
-  updateUser() {
-    if (this.user.id) {
-      this.userService.updateUser(this.user).subscribe(
-        (res: User) => {
-          this.router.navigateByUrl('/user-list');
-        },
-        (error) => {
-          this.errors = error?.error?.message;
-        }
-      );
-    }
-  }
-
-  checkEmail() {
-    this.userService.checkEmail(this.user.email).subscribe(
-      (res) => {
-        console.log(res);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  }
 }
